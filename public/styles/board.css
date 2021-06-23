@@ -1,0 +1,60 @@
+.board {
+  width: calc(var(--squareSize) * 3);
+  height: calc(var(--squareSize) * 3);
+  position: relative;
+}
+
+.game {
+  min-height: 70vh;
+  display: flex;
+}
+
+.icon {
+  width: 25%;
+  display: block;
+  cursor: pointer;
+}
+
+.icon:first-child {
+  margin-right: 20px;
+}
+
+.icon__line {
+  fill: none;
+  stroke: #d6c1c4;
+  stroke-width: 20;
+  stroke-linecap: round;
+  stroke-miterlimit: 10;
+  transition: stroke 0.2s;
+}
+
+.icon:hover .icon__line {
+  stroke: #ff90aa;
+}
+
+.title-screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #e06e7b;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.game-board {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #020357;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}

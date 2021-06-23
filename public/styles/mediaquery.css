@@ -1,0 +1,35 @@
+@media screen and (max-width: 425px) {
+  :root {
+    --squareSize: 80px;
+  }
+  .game {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  :root {
+    --squareSize: 120px;
+  }
+  .game {
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --squareSize: 140px;
+  }
+  .game-info {
+    width: 30%;
+  }
+  .game {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+}

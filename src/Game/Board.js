@@ -1,7 +1,20 @@
 import React from "react";
 import Square from "./Square";
+import BoardTitle from "./BoardTitle";
+import { CSSTransition } from "react-transition-group";
+
+const GameBoard = ({ renderedRow }) => (
+  <div className="game-board">{renderedRow.map((row) => row)}</div>
+);
 
 class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      titleScreen: false,
+      gameBoard: true,
+    };
+  }
   renderSquare(i) {
     return (
       <Square
@@ -22,10 +35,15 @@ class Board extends React.Component {
       renderingRow.push(this.renderSquare(i));
     }
     return (
-      <div key={startIdx} className="board-row">
+      <React.Fragment key={startIdx}>
         {renderingRow.map((row) => row)}
-      </div>
+      </React.Fragment>
     );
+  }
+
+  startGame(player) {
+    this.setState({ titleScreen: false });
+    this.props.startPlayer(player);
   }
 
   render() {
@@ -35,7 +53,32 @@ class Board extends React.Component {
     for (let i = 0; i < gridSize * gridSize; i += gridSize) {
       renderedRow.push(this.renderSquareRow(i, gridSize));
     }
-    return <div>{renderedRow.map((row) => row)}</div>;
+    return (
+      <div className="board">
+        <CSSTransition
+          in={this.state.titleScreen}
+          timeout={{
+            appear: 2000,
+            exit: 800,
+          }}
+          classNames="title-screen-"
+          unmountOnExit
+          appear
+          onExited={() => this.setState({ gameBoard: true })}
+        >
+          <BoardTitle startGame={(player) => this.startGame(player)} />
+        </CSSTransition>
+
+        <CSSTransition
+          in={this.state.gameBoard}
+          timeout={1000}
+          mountOnEnter
+          classNames="game-board-"
+        >
+          <GameBoard renderedRow={renderedRow} />
+        </CSSTransition>
+      </div>
+    );
   }
 }
 

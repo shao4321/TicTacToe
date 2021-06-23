@@ -1,0 +1,71 @@
+@import "square.css";
+@import "mediaquery.css";
+@import "transitions.css";
+@import "board.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+body {
+  font: 1rem "Century Gothic", Futura, sans-serif;
+}
+
+.game-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: url("../bg.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.player-turn {
+  text-align: center;
+}
+
+.game-info {
+  margin-top: 1em;
+}
+
+.moves {
+  text-align: center;
+}
+
+.moves h3 {
+  margin-top: 1em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid white;
+}
+
+.moves ol {
+  width: 80vw;
+  margin: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.move-btn {
+  color: #222;
+  font-size: 0.875rem;
+  padding: 0.5em;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  text-transform: capitalize;
+  cursor: pointer;
+  min-width: 135px;
+}
+
+.move-btn:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}

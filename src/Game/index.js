@@ -1,6 +1,8 @@
 import React from "react";
 import Board from "./Board";
 import { calculateWinner } from "./Functions";
+import GameInfo from "./GameInfo";
+import { CSSTransition } from "react-transition-group";
 
 class Game extends React.Component {
   constructor(props) {
@@ -19,6 +21,10 @@ class Game extends React.Component {
     };
     this.gridSize = 3;
     this.buttonLocHashKeys = {};
+  }
+
+  startPlayer(player) {
+    this.setState({ xIsNext: player === "cross" });
   }
 
   handleClick(i) {
@@ -65,7 +71,12 @@ class Game extends React.Component {
       this.buttonLocHashKeys[currentMoveLocation] = move;
       return (
         <li key={move}>
-          <button onClick={(e) => this.jumpToEvents(e, move)}>{desc}</button>
+          <button
+            className="move-btn"
+            onClick={(e) => this.jumpToEvents(e, move)}
+          >
+            {desc}
+          </button>
         </li>
       );
     });
@@ -100,18 +111,31 @@ class Game extends React.Component {
       : `Next player: ${this.state.xIsNext ? "X" : "O"}`;
 
     return (
-      <div className="game">
-        <div className="game-board">
+      <div className="game-container">
+        <CSSTransition
+          in={this.state.xIsNext === undefined}
+          timeout={1000}
+          classNames="fade"
+          unmountOnExit
+        >
+          <h1 className="head">Pick a side</h1>
+        </CSSTransition>
+        <div className="game">
           <Board
             winline={winLine}
             squares={current.squares}
             onClick={(i) => this.handleClick(i)}
             gridSize={this.gridSize}
+            startPlayer={(player) => this.startPlayer(player)}
           />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{allMovesButton}</ol>
+          <CSSTransition
+            in={this.state.xIsNext !== undefined}
+            timeout={1000}
+            mountOnEnter
+            classNames="fade"
+          >
+            <GameInfo allMovesButton={allMovesButton} status={status} />
+          </CSSTransition>
         </div>
       </div>
     );
