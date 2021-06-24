@@ -1,6 +1,6 @@
 <h1 align="center" id="top">Welcome to Tic Tac Toe 👋</h1>
 
-![Tic Tac Toe Image](https://i.ibb.co/6sWYwZZ/movielord.png)
+![Tic Tac Toe Image](https://i.ibb.co/DpLLV08/ttt.png)
 
 ### 🏠 [Live Site](https://movielord.netlify.app/)
 
