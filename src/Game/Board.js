@@ -11,8 +11,8 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      titleScreen: false,
-      gameBoard: true,
+      titleScreen: true,
+      gameBoard: false,
     };
   }
   renderSquare(i) {
@@ -71,7 +71,7 @@ class Board extends React.Component {
 
         <CSSTransition
           in={this.state.gameBoard}
-          timeout={1000}
+          timeout={2000}
           mountOnEnter
           classNames="game-board-"
         >

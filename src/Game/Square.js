@@ -16,7 +16,7 @@ const SquareButton = (props) => {
     <button
       className="square"
       style={{
-        backgroundColor: `${props.win && "yellow"}`,
+        backgroundColor: `${props.win && "#c0be2d"}`,
         borderRadius: assignBorderRadius(),
       }}
       onClick={props.onClick}

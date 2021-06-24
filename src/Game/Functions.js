@@ -17,51 +17,5 @@ function calculateWinner(squares) {
   }
   return [null, null];
 }
-// sortMoveAscending() {
-//     let buttonsLoc = [];
-//     for (let { currentMoveLocation } of this.state.history) {
-//       buttonsLoc.push(currentMoveLocation);
-//     }
-//     buttonsLoc.sort((a, b) => a - b);
-//     const allMovesButton = this.state.allMovesButton;
-//     let sortedAllMovesButton = [];
-//     console.log(this.buttonLocHashKeys);
-//     console.log(buttonsLoc);
-//     for (let key of buttonsLoc) {
-//       const liKey = this.buttonLocHashKeys[key];
-//       for (let btn of allMovesButton) {
-//         if (btn.key === liKey) {
-//           sortedAllMovesButton.push(btn);
-//           break;
-//         }
-//       }
-//     }
-//     console.log(sortedAllMovesButton);
-//     this.setState({
-//       allMovesButton: sortedAllMovesButton,
-//     });
-//   }
-
-//   sortMoveDescending() {
-//     let buttonsLoc = [];
-//     for (let { currentMoveLocation } of this.state.history) {
-//       buttonsLoc.push(currentMoveLocation);
-//     }
-//     buttonsLoc.sort((a, b) => b - a);
-//     const allMovesButton = this.state.allMovesButton;
-//     let sortedAllMovesButton = [];
-//     for (let key of buttonsLoc) {
-//       const liKey = this.buttonLocHashKeys[key];
-//       for (let btn of allMovesButton) {
-//         if (btn.key === liKey) {
-//           sortedAllMovesButton.push(btn);
-//           break;
-//         }
-//       }
-//     }
-//     this.setState({
-//       allMovesButton: sortedAllMovesButton,
-//     });
-//   }
 
 export { calculateWinner };

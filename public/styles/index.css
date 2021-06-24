@@ -32,23 +32,18 @@ body {
   text-align: center;
 }
 
-.game-info {
-  margin-top: 1em;
-}
-
 .moves {
   text-align: center;
 }
 
 .moves h3 {
-  margin-top: 1em;
+  margin: 1em auto;
   padding-bottom: 0.5em;
   border-bottom: 1px solid white;
 }
 
 .moves ol {
-  width: 80vw;
-  margin: 1em;
+  margin: 1em auto;
   display: flex;
   justify-content: space-between;
   align-items: center;

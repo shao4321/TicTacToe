@@ -3,6 +3,7 @@ import Board from "./Board";
 import { calculateWinner } from "./Functions";
 import GameInfo from "./GameInfo";
 import { CSSTransition } from "react-transition-group";
+import Swal from "sweetalert2";
 
 class Game extends React.Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Game extends React.Component {
         },
       ],
       stepNumber: 0,
-      xIsNext: true,
+      xIsNext: undefined,
       prevButton: undefined,
       allMovesButton: [],
     };
@@ -103,12 +104,18 @@ class Game extends React.Component {
     const [winner, winLine] = calculateWinner(current.squares);
     let allMovesButton = this.state.allMovesButton.map((btn) => btn);
 
-    let status;
-    status = winner
-      ? `Winner: ${winner}`
-      : this.state.stepNumber === this.gridSize ** 2
-      ? "Game over, it is a draw."
-      : `Next player: ${this.state.xIsNext ? "X" : "O"}`;
+    let status,
+      gameDraw = this.state.stepNumber === this.gridSize ** 2;
+    status =
+      winner || gameDraw
+        ? "Refresh the page to restart game"
+        : `Next player: ${this.state.xIsNext ? "X" : "O"}`;
+
+    if (winner) {
+      Swal.fire(`Congratulations ${winner}! You have won.`);
+    } else if (gameDraw) {
+      Swal.fire("Game over, it is a draw.");
+    }
 
     return (
       <div className="game-container">

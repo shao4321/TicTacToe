@@ -4,7 +4,11 @@ const GameInfo = ({ allMovesButton, status }) => {
       <h2 className="player-turn">{status}</h2>
       <div className="moves">
         <h3>Previous Moves</h3>
-        <ol>{allMovesButton}</ol>
+        {allMovesButton.length > 0 ? (
+          <ol>{allMovesButton}</ol>
+        ) : (
+          <p>Nothing to be shown</p>
+        )}
       </div>
     </div>
   );
