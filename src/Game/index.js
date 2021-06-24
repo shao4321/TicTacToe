@@ -109,7 +109,7 @@ class Game extends React.Component {
     status =
       winner || gameDraw
         ? "Refresh the page to restart game"
-        : `Next player: ${this.state.xIsNext ? "X" : "O"}`;
+        : `Current player: ${this.state.xIsNext ? "X" : "O"}`;
 
     if (winner) {
       Swal.fire(`Congratulations ${winner}! You have won.`);
