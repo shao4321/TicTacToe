@@ -2,7 +2,7 @@
 
 ![Tic Tac Toe Image](https://i.ibb.co/DpLLV08/ttt.png)
 
-### 🏠 [Live Site](https://movielord.netlify.app/)
+### 🏠 [Live Site](https://shaotictactoe.netlify.app/)
 
 ---
 
