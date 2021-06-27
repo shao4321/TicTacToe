@@ -11,6 +11,9 @@
 You're sections headers will be used to reference location of destination.
 
 - [Description](#description)
+- [Challenges](#challenges)
+- [Improvements](#improvements)
+- [Technologies](#technologies)
 - [How To Use](#how-to-use)
 - [Author Info](#author-info)
 
@@ -67,7 +70,7 @@ npm start
 
 👤 **Lee Shao Wee**
 
-- Website: (linkportfolio)
+- Website: [URL](https://leeshaowee.netlify.app/)
 - Github: [@shao4321](https://github.com/shao4321)
 
 ---
