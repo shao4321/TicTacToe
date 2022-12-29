@@ -48,17 +48,17 @@ You're sections headers will be used to reference location of destination.
 
 ## How To Use
 
-<br/>
+---
 
-#### Installation
+### Installation
 
-```
+```code
 npm install
 ```
 
 #### Usage
 
-```
+```code
 npm start
 ```
 
@@ -71,7 +71,7 @@ npm start
 👤 **Lee Shao Wee**
 
 - Website: [URL](https://leeshaowee.netlify.app/)
-- Github: [@shao4321](https://github.com/shao4321)
+- Github: [@shaowi](https://github.com/shaowi)
 
 ---
 
