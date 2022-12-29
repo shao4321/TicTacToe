@@ -1,9 +1,9 @@
-import React from "react";
-import Board from "./Board";
-import { calculateWinner } from "./Functions";
-import GameInfo from "./GameInfo";
-import { CSSTransition } from "react-transition-group";
-import Swal from "sweetalert2";
+import React from 'react';
+import Board from './Board';
+import { calculateWinner } from './Functions';
+import GameInfo from './GameInfo';
+import { CSSTransition } from 'react-transition-group';
+import Swal from 'sweetalert2';
 
 class Game extends React.Component {
   constructor(props) {
@@ -12,89 +12,64 @@ class Game extends React.Component {
       history: [
         {
           squares: Array(9).fill(null),
-          currentMoveLocation: null,
-        },
+          currentMoveLocation: null
+        }
       ],
       stepNumber: 0,
       xIsNext: undefined,
       prevButton: undefined,
-      allMovesButton: [],
+      allMovesButton: []
     };
     this.gridSize = 3;
     this.buttonLocHashKeys = {};
+    this.gameEnd = false;
   }
 
   startPlayer(player) {
-    this.setState({ xIsNext: player === "cross" });
+    this.setState({ xIsNext: player === 'cross' });
   }
 
   handleClick(i) {
-    const moveLocations = {
-      1: [1, 1],
-      2: [2, 1],
-      3: [3, 1],
-      4: [1, 2],
-      5: [2, 2],
-      6: [3, 2],
-      7: [1, 3],
-      8: [2, 3],
-      9: [3, 3],
-    };
+    if (this.state.gameEnd) {
+      return;
+    }
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares)[0] || squares[i]) return;
-    squares[i] = this.state.xIsNext ? "X" : "O";
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
 
-    const allMovesButton = this.updateMoves(history, moveLocations);
     this.setState({
       history: history.concat([
         {
           squares: squares,
-          currentMoveLocation: i + 1,
-        },
+          currentMoveLocation: i + 1
+        }
       ]),
       stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
-      allMovesButton: allMovesButton,
+      xIsNext: !this.state.xIsNext
     });
   }
 
-  updateMoves(history, moveLocations) {
-    const allMovesButton = history.map(({ currentMoveLocation }, move) => {
-      let row, col, desc;
-      if (currentMoveLocation != null) {
-        [col, row] = moveLocations[currentMoveLocation];
-        desc = `Go to move (${col},${row})`;
-      } else {
-        desc = "Go to game start";
-      }
-      this.buttonLocHashKeys[currentMoveLocation] = move;
-      return (
-        <li key={move}>
-          <button
-            className="move-btn"
-            onClick={(e) => this.jumpToEvents(e, move)}
-          >
-            {desc}
-          </button>
-        </li>
-      );
-    });
-    return allMovesButton;
+  revertMove() {
+    this.jumpTo(this.state.stepNumber - 1);
+  }
+
+  redoMove() {
+    this.jumpTo(this.state.stepNumber + 1);
   }
 
   jumpTo(step) {
     this.setState({
       stepNumber: step,
-      xIsNext: !step % 2,
+      xIsNext: !step % 2
     });
   }
 
   jumpToEvents(e, step) {
     this.jumpTo(step);
     this.setState({
-      prevButton: e.target,
+      prevButton: e.target
     });
   }
 
@@ -102,19 +77,25 @@ class Game extends React.Component {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const [winner, winLine] = calculateWinner(current.squares);
-    let allMovesButton = this.state.allMovesButton.map((btn) => btn);
 
     let status,
       gameDraw = this.state.stepNumber === this.gridSize ** 2;
-    status =
-      winner || gameDraw
-        ? "Refresh the page to restart game"
-        : `Current player: ${this.state.xIsNext ? "X" : "O"}`;
+    const gameEnd = winner || gameDraw;
 
-    if (winner) {
-      Swal.fire(`Congratulations ${winner}! You have won.`);
-    } else if (gameDraw) {
-      Swal.fire("Game over, it is a draw.");
+    status = gameEnd
+      ? 'Refresh the page to restart game'
+      : `Current player: ${this.state.xIsNext ? 'X' : 'O'}`;
+
+    if (!this.state.gameEnd) {
+      if (winner) {
+        Swal.fire(`Congratulations ${winner}! You have won.`).then(() =>
+          this.setState({ gameEnd })
+        );
+      } else if (gameDraw) {
+        Swal.fire('Game over, it is a draw.').then(() =>
+          this.setState({ gameEnd })
+        );
+      }
     }
 
     return (
@@ -127,7 +108,24 @@ class Game extends React.Component {
         >
           <h1 className="head">Pick a side</h1>
         </CSSTransition>
-        <div className="game">
+        <div className="game flex-col">
+          <CSSTransition
+            in={this.state.xIsNext !== undefined}
+            timeout={1000}
+            mountOnEnter
+            classNames="fade"
+          >
+            <GameInfo
+              revertable={this.state.stepNumber > 0 && !gameEnd}
+              revertMove={() => this.revertMove()}
+              redoable={
+                this.state.stepNumber < this.state.history.length - 1 &&
+                !gameEnd
+              }
+              redoMove={() => this.redoMove()}
+              status={status}
+            />
+          </CSSTransition>
           <Board
             winline={winLine}
             squares={current.squares}
@@ -135,14 +133,6 @@ class Game extends React.Component {
             gridSize={this.gridSize}
             startPlayer={(player) => this.startPlayer(player)}
           />
-          <CSSTransition
-            in={this.state.xIsNext !== undefined}
-            timeout={1000}
-            mountOnEnter
-            classNames="fade"
-          >
-            <GameInfo allMovesButton={allMovesButton} status={status} />
-          </CSSTransition>
         </div>
       </div>
     );

@@ -4,47 +4,31 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@material-ui/core": "^4.11.4",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.58",
-    "axios": "^0.21.1",
-    "classnames": "^2.3.1",
-    "clsx": "^1.1.1",
-    "concurrently": "^6.1.0",
-    "cross-env": "^7.0.3",
-    "emailjs-com": "^3.1.0",
-    "formik": "^2.2.6",
-    "json-server": "^0.16.3",
-    "lodash": "^4.17.21",
     "react": "^17.0.2",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-blur": "^0.6.0",
     "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-redux": "^7.2.4",
-    "react-router-dom": "^5.2.0",
+    "react-icons": "^4.7.1",
     "react-scripts": "^4.0.3",
-    "react-scroll": "^1.8.2",
-    "react-swipeable-routes": "^0.8.0",
-    "react-swipeable-views": "^0.14.0",
-    "react-transition-group": "^4.4.1",
-    "redux": "^4.1.0",
-    "styled-components": "^5.3.0",
-    "sweetalert2": "^11.0.17",
-    "uuid": "^8.3.2",
-    "web-vitals": "^1.1.1",
-    "yup": "^0.32.9",
-    "yup-phone": "^1.2.19"
+    "react-transition-group": "^4.4.5",
+    "sweetalert2": "^11.0.17"
   },
-  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "json-server": "json-server --watch src/data/db.json --port 5000",
-    "dev": "concurrently \"react-scripts start\" \"npm run json-server\""
+    "eject": "react-scripts eject"
   },
-  "author": "shaowee",
-  "license": "ISC"
+  "author": "leeshaowee",
+  "license": "ISC",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
